@@ -5,17 +5,13 @@ int main(){
     cin>>a>>b>>c;
     if(a>b){
         if(b>c){
-            cout<<b<<endl;
-        }
-        else{
-            cout<<c<<endl;
-        }}
+            cout<<a<<endl;}}
     else{
-        if(b>c){
-            cout<<b<<endl;
+        if(c>b){
+            cout<<c<<endl;
         }
         else{
-            cout<<c<<endl;
+            cout<<b<<endl;
         }
     }
 
