@@ -5,7 +5,7 @@ int main(){
     int *p=&i;
     //cout<<*p+1;
 
-    int t=p;
+    int t=*p;
     cout<<t<<endl;
     cout<<t+1;
     return 0;

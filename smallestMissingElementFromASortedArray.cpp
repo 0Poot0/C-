@@ -16,7 +16,7 @@ int main(){
         }
     }
     if(flag==0){
-        cout<<"The missing element is "<<n;
+        cout<<"The smallest missing element is "<<n;
     }
 
     return 0;

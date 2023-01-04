@@ -35,6 +35,8 @@ int main(){
     hero *b = new hero;
     cout<<"Health of antara is : "<<(*b).getHealth()<<endl;
     cout<<"Level of Antara is : "<<(*b).level<<endl;
+
+    
     //cout<<"size is : "<<sizeof(antara)<<endl;
 //cout<<"Ramesh's health is : "<<antara.getHealth()<<endl;
   //  antara.setHealth(100);
