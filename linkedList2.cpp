@@ -6,6 +6,25 @@ class Node{
     public:
     int data;
     Node* next;
+
+    //Constructor
+    // Node(int data){
+    //     this->data=data;
+    //     this->next=NULL;
+    // }
+
+    //Destructor...
+    // ~Node(){
+    //     int value= this->data;
+    //     //memory free
+    //     if(this->next!=NULL){
+    //         temp->next=NULL;
+    //         delete next;
+    //         this->next=NULL;
+    //     }
+    //     cout<<"Memory is free for node with data"<<value<<endl;
+    // }
+
 };
 
 //Insertion at the beginning.
@@ -68,6 +87,35 @@ void append(Node ** head,int data){
     last->next=node3;
 }
 
+//Deletion...
+
+void deleteNode(int position, Node* &head){
+
+    if(position==1){
+        Node* temp= head;
+        head = head -> next;
+        delete temp;
+    }
+    else{
+
+         //deleting any middle or last node...
+
+         Node* curr =head;
+         Node* prev = NULL;
+         int cnt = 1;
+         while(cnt<position){
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+
+         }
+         prev->next=curr->next;
+         curr->next=NULL;
+         delete curr; 
+    }
+
+}
+
 //Printing aka displaying the list.
 void printList(Node* n){
     while(n != NULL){
@@ -85,6 +133,9 @@ int main(){
     push(&head,1);
     middle(head,2,2);
     append(&head,10);
+    printList(head);
+
+    deleteNode(4,head);
     printList(head);
 
     return 0;
