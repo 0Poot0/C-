@@ -21,7 +21,7 @@ Node(int d){
 void print(Node* head){
     Node* temp=head;
     while(temp!=NULL){
-        cout<<temp-> data;
+        cout<<temp-> data<<" ";
         temp=temp-> next;
     }
     cout<<endl;
@@ -33,6 +33,46 @@ void insertAtHead(Node* &head, int data){
     temp->next = head;
     head-> prev = temp;
     head=temp;
+}
+
+//Insertion at tail..
+void insertAtTail(Node* &tail,int d){
+    Node* node2 = new Node(d);
+    tail->next = node2;
+    node2->prev = tail;
+    tail= node2;
+}
+
+//Insertion at any position..
+void insertAtPosition(Node* &head, Node* &tail, int position, int d){
+
+    //At head..
+     if(position==1){
+        insertAtHead(head,d);
+        return;
+     }
+
+     Node* temp = head;
+     int count = 1;
+     while(count<position){
+        temp = temp->next;
+        count++;
+     }
+     
+     //At tail..
+     if(temp->next == NULL){
+        //tail = temp->next;
+        insertAtTail(tail,d);
+        return;
+     }
+     
+     //At any position..
+     Node* node3 = new Node(d);
+     node3->next = temp->next;
+     temp->next->prev= node3;
+     temp->next = node3;
+     node3-> prev= temp;
+
 }
 
 //Finding out the length of the linked list..
@@ -49,12 +89,18 @@ return length;
 //Driver code..
 int main(){
 
-    Node* node1=new Node(10);
+    Node* node1=new Node(20);
     Node* head = node1;
+    Node* tail = node1;
+    //print(head);
+
+    insertAtHead(head,10);
+
+    insertAtTail(tail,30);
+
+    insertAtPosition(head,tail,3,40);
     print(head);
 
-    insertAtHead(head,110);
-    print(head);
 
    // cout<<getLength(head)<<endl;
 
