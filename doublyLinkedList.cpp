@@ -15,6 +15,16 @@ Node(int d){
     this->next=NULL;
 
 }
+
+//Destructor..
+ ~Node(){
+     int value= this->data;
+      if(next!=NULL){
+         delete next;
+         next=NULL;
+      }
+      cout<<"Memory freed for values "<<value<<endl;
+  }
 };
 
 //Traversal of linked list..
@@ -28,19 +38,35 @@ void print(Node* head){
 }
 
 //Insertion at the start..
-void insertAtHead(Node* &head, int data){
-    Node* temp = new Node(data);
+void insertAtHead(Node* &tail, Node* &head, int d){
+
+    if(head==NULL){
+        Node* temp = new Node(d);
+        head = temp;
+        tail=temp;
+    }
+    else{
+    Node* temp = new Node(d);
     temp->next = head;
     head-> prev = temp;
     head=temp;
+    }
 }
 
 //Insertion at tail..
-void insertAtTail(Node* &tail,int d){
-    Node* node2 = new Node(d);
+void insertAtTail(Node* &tail, Node* &head, int d){
+     
+    if(tail==NULL){
+        Node* temp = new Node(d);
+        tail = temp;
+        head=temp;
+    }
+    else{
+        Node* node2 = new Node(d);
     tail->next = node2;
     node2->prev = tail;
     tail= node2;
+    }
 }
 
 //Insertion at any position..
@@ -48,7 +74,7 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d){
 
     //At head..
      if(position==1){
-        insertAtHead(head,d);
+        insertAtHead(head,tail,d);
         return;
      }
 
@@ -62,7 +88,7 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d){
      //At tail..
      if(temp->next == NULL){
         //tail = temp->next;
-        insertAtTail(tail,d);
+        insertAtTail(tail,head,d);
         return;
      }
      
@@ -86,6 +112,35 @@ int getLength(Node* head){
 return length;
 }
 
+//Deletion of nodes..
+void deleteNode(Node* &head,int position){
+    if(position == 1) {
+        Node* temp = head;
+        temp->next->prev = NULL;
+        head= temp ->next;
+        temp->next = NULL;
+        }
+        
+    else
+    {
+        //deleting any middle node or last node
+        Node* curr = head;
+        Node* prev = NULL;
+
+        int cnt = 1;
+        while(cnt < position) {
+            prev = curr;
+            curr = curr -> next;
+            cnt++;
+        }
+
+        curr->prev= NULL;
+        prev->next = curr->next;
+        curr->next=NULL;
+        delete curr;
+    }
+}
+
 //Driver code..
 int main(){
 
@@ -94,12 +149,15 @@ int main(){
     Node* tail = node1;
     //print(head);
 
-    insertAtHead(head,10);
+    insertAtHead(head,tail,10);
 
-    insertAtTail(tail,30);
+    insertAtTail(tail,head,30);
 
     insertAtPosition(head,tail,3,40);
     print(head);
+
+    // deleteNode(head,3);
+    // print(head);
 
 
    // cout<<getLength(head)<<endl;
