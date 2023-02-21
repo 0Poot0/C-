@@ -1,5 +1,6 @@
 #include<iostream>
-#include<string>
+#include<string.h>
+#include<algorithm>
 using namespace std;
 class hero{
 
@@ -25,12 +26,18 @@ class hero{
     }
 
 //copy constructor...
-// hero(hero &temp){
-//     cout<<"Copy constructor is called.."<<endl;
-//     this -> health= temp.health;
-//     this -> level = temp.level;
-//     this -> name= temp.name;
-// }
+ hero(hero &temp){
+
+    //Deep copy
+    char *b = new char [strlen(temp.name)+1];
+    strcpy(b,temp.name);
+    this->name = b;
+
+     cout<<"Copy constructor is called.."<<endl;
+     this -> health= temp.health;
+     this -> level = temp.level;
+     //this -> name= temp.name;
+ }
 
 //getters
     int getHealth(){
@@ -70,17 +77,21 @@ int main(){
 
     // hero suresh(antara);
     // suresh.print();
+
 hero antara;
 antara.setHealth(70);
 antara.setLevel('T');
+
 char ant[100]="Tara";
 antara.setName(ant);
 antara.print();
 
 hero tal(antara);
+
 tal.print();
 
 antara.name[0]='c';
+
 antara.print();
 
 tal.print();
