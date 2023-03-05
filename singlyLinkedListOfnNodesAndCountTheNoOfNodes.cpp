@@ -39,29 +39,18 @@ void insertAtHead(Node* &head, int data){
 }
 
 //Inserting at tail..
-void insertAtTail(Node* &tail, int data){
-    if(tail==NULL){
-        Node* node= new Node(data);
-        tail= node;
-    }
-else{
-    Node* node2= new Node(data);
-tail->next = node2;
-node2->next = NULL;
-tail= node2;
-}
-}
-
-//Printing the linked list..
-void print(Node* &head){
-    reverse(head);
-    Node* temp= head;
-    while(temp!= NULL){
-        cout<<"Data = "<<temp->data<<endl;
-        temp= temp->next;
-    }
-    cout<<endl;
-}
+ void insertAtTail(Node* &tail, int data){
+     if(tail==NULL){
+         Node* node= new Node(data);
+         tail= node;
+     }
+ else{
+     Node* node2= new Node(data);
+ tail->next = node2;
+ node2->next = NULL;
+ tail= node2;
+ }
+  }
 
 void reverse(Node* &head){
     Node* curr= head;
@@ -77,21 +66,49 @@ void reverse(Node* &head){
     head=prev;
     }
 
-int main(){
-    int num;
-    cout<<"Input the number of nodes you want : ";
-    cin>>num;
+//Printing the linked list..
+void print(Node* &head){
+    reverse(head);
+    cout<<"Data enterd in the list are : "<<endl;
+    Node* temp = head;
+    while(temp!=NULL){
+    cout<<"Data = "<<temp->data<<endl;
+    temp=temp->next;
+    }
     cout<<endl;
+}
+
+void lengthOfLinkedList(Node* &head){
+    int count=0;
+Node*temp = head;
+while(temp!=NULL){
+count++;
+temp=temp->next;
+}
+cout<<"Total no. of nodes are : "<<count<<endl;
+    
+}
+
+//Driver code..
+int main(){
+    
+    int nodes;
+    cout<<"Input total no. of nodes.. :";
+    cin>>nodes;
 
 Node* head=NULL;
-Node* tail =NULL;
+Node* tail=NULL;
 
-for(int i=0; i<num; i++){
-    int k;
-    cin>>k;
-insertAtHead(head,k);
+int num;
+    for(int i=1; i<=nodes; i++){
+        num;
+        cout<<"Input data for node" <<i<<" : ";
+        cin>>num;
 
-}
+insertAtHead(head,num);
+    }
 print(head);
+lengthOfLinkedList(head);
 
+    return 0;
 }
